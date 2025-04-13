@@ -86,7 +86,7 @@
 
         /* Flag Styles */
         .flag-image {
-            position: absolute; /* Position absolutely within the graph container */
+            position: sticky; /* Position absolutely within the graph container */
             top: 10px; /* Adjust as needed */
             right: 10px; /* Adjust as needed */
             width: 500px; /* Adjust size as needed */
@@ -116,11 +116,9 @@
         <div class="response-count" id="responseCount">Réponses totales : --</div>
 
         <!-- Google Sheets Graph -->
-        <div class="graph-container">
            <!-- Embedded Google Sheets chart -->
            <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQVwDSTrG3KVMlhZgwX1Z_LDDCaOaZxHjABXjRXfPk29PIwpi4AtD45NHBM9Q0ZFdfxQr0Dne3yb4pp/pubchart?oid=687736321&amp;format=interactive"></iframe>
            <img src="franco.png" alt="Franco-Ontarian Flag" class="flag-image"> <!-- Flag image -->
-        </div>
     </div>
 
     <footer>&copy; Thermomètre Interactif - Tous droits réservés</footer>
