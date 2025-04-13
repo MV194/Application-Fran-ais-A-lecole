@@ -4,136 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thermomètre de la Refrancisation à l'école</title>
-     <link
-      rel="Website Icon"
-      type="png"
-      href="favicon.png"/>
-    <style>
-        /* General Styles */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f8ff; /* Light Blue Background */
-            color: #2c3e50; /* Dark Blue Text */
-        }
-
-        h1 {
-            font-size: 2.2em;
-            margin-top: 20px;
-            color: #3498db; /* Blue Header */
-            text-align: center; /* Center the title */
-        }
-
-        /* Content Container */
-        .content-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center; /* Center content vertically */
-            gap: 30px; /* Space between elements */
-            min-height: 100vh; /* Ensure the container takes up full viewport height */
-        }
-
-        /* Response Count Styles */
-        .response-count {
-            font-size: 1.5em; /* Fixed font size for consistency */
-            color: #16a085; /* Green Color */
-        }
-
-        /* Thermometer Styles */
-        .thermometer-container {
-            position: relative;
-            width: 80px; /* Fixed width for thermometer */
-            height: 500px; /* Fixed height for thermometer */
-            background: linear-gradient(to bottom, #ecf0f1, #bdc3c7); /* Light Gray */
-            border-radius: 30px;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-        }
-
-        .thermometer-fill {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            background: linear-gradient(to top, #e74c3c, #f39c12); /* Red to Yellow */
-            border-radius: inherit; /* Match container's border-radius */
-            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
-            transition: height 0.5s ease-in-out;
-        }
-
-        .thermometer-label {
-            font-size: 1.5em; /* Fixed font size for thermometer label */
-            margin-top: 10px;
-        }
-
-        /* Graph Container */
-        .graph-container {
-            display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-            width: 90%; /* Use most of the available width */
-            height: 700px; /* Larger height for the graph container */
-            position: relative; /* Add position relative */
-        }
-
-        iframe {
-            width: 100%; /* Full width of the graph container */
-            height: 100%; /* Full height of the graph container */
-            border-radius: 10px; /* Rounded corners for iframe */
-            border: none; /* Remove border for a clean look */
-        }
-
-        /* Flag Styles */
-        .flag-image {
-            position: sticky; /* Position absolutely within the graph container */
-            top: 10px; /* Adjust as needed */
-            right: 10px; /* Adjust as needed */
-            width: 500px; /* Adjust size as needed */
-            height: auto;
-        }
-
-        footer {
-            margin-top: auto; /* Push footer to the bottom if content is small */
-            padding-bottom: 20px;
-            font-size: 1em; /* Fixed font size for footer text */
-            color: #777;
-        }
-    </style>
+    <link rel="Website Icon" type="png" href="favicon.png"/>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>Thermomètre de la Refrancisation à l'école</h1>
+<body class="bg-blue-50 flex flex-col min-h-screen">
+    <!-- Main Content Container -->
+    <div class="flex-grow flex flex-col items-center px-4">
+        <!-- Title -->
+        <h1 class="text-2xl md:text-3xl font-bold text-blue-600 text-center pt-4">
+            Thermomètre de la Refrancisation à l'école
+        </h1>
 
-    <!-- Content Container -->
-    <div class="content-container">
-        <!-- Thermometer -->
-        <div class="thermometer-container">
-            <div class="thermometer-fill" id="thermometerFill" style="height: 0%;"></div>
+        <!-- Thermometer and Responses -->
+        <div class="flex flex-col items-center mt-4">
+            <div class="relative w-20 h-64 bg-gray-300 rounded-full shadow-inner overflow-hidden">
+                <div id="thermometerFill" class="absolute bottom-0 w-full bg-gradient-to-t from-red-500 to-yellow-400 rounded-full transition-all duration-500" style="height: 0%;"></div>
+            </div>
+            <div id="thermometerLabel" class="text-lg font-semibold mt-2">0%</div>
         </div>
-        <div class="thermometer-label" id="thermometerLabel">0%</div>
+        <div id="responseCount" class="text-lg text-green-600 font-medium mt-2">
+            Réponses totales : --
+        </div>
 
-        <!-- Total Responses Count -->
-        <div class="response-count" id="responseCount">Réponses totales : --</div>
-
-        <!-- Google Sheets Graph -->
-           <!-- Embedded Google Sheets chart -->
-           <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQVwDSTrG3KVMlhZgwX1Z_LDDCaOaZxHjABXjRXfPk29PIwpi4AtD45NHBM9Q0ZFdfxQr0Dne3yb4pp/pubchart?oid=687736321&amp;format=interactive"></iframe>
-           <img src="franco.png" alt="Franco-Ontarian Flag" class="flag-image"> <!-- Flag image -->
+        <!-- Flag -->
+        <div class="w-full flex justify-center mt-4">
+            <img 
+                src="franco.png" 
+                alt="Franco-Ontarian Flag" 
+                class="w-[200px] md:w-[300px] h-auto"
+            >
+        </div>
     </div>
 
-    <footer>&copy; Thermomètre Interactif - Tous droits réservés</footer>
+    <!-- Graph Container - Now using flex for centering -->
+    <div class="w-full bg-blue-50 flex flex-col items-center justify-center py-8">
+        <div class="w-full max-w-[73%] h-[50vh] min-h-[370px] flex justify-center">
+            <iframe 
+                class="w-full h-full rounded-lg shadow-lg border-none"
+                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQVwDSTrG3KVMlhZgwX1Z_LDDCaOaZxHjABXjRXfPk29PIwpi4AtD45NHBM9Q0ZFdfxQr0Dne3yb4pp/pubchart?oid=687736321&amp;format=interactive"
+                seamless
+                frameborder="0"
+                scrolling="yes"
+            ></iframe>
+        </div>
+    </div>
 
+    <!-- Footer -->
+    <footer class="text-sm text-gray-600 text-center py-2 bg-blue-50">
+        &copy; Thermomètre Interactif - Tous droits réservés
+    </footer>
+
+    <!-- Script for fetching and updating thermometer data -->
     <script>
-        // Fetch thermometer data from Firebase and update the thermometer
         async function fetchDataAndUpdateThermometer() {
             try {
-                const response = await fetch('https://refrancisation-default-rtdb.firebaseio.com/niveau.json'); // Firebase Realtime Database URL
-                const niveau = await response.json(); // Parse JSON response
+                const response = await fetch('https://refrancisation-default-rtdb.firebaseio.com/niveau.json');
+                const niveau = await response.json();
 
                 updateThermometer(niveau);
                 updateResponseCount(niveau);
 
-                console.log("Fetched data:", niveau); // Debugging log
+                console.log("Fetched data:", niveau);
             } catch (error) {
                 console.error("Error fetching data:", error);
                 document.getElementById('thermometerLabel').textContent = "Erreur de chargement des données !";
@@ -179,10 +110,7 @@
             }
         }
 
-        // Fetch thermometer data every ~1.5 seconds
         setInterval(fetchDataAndUpdateThermometer, 1500);
-
-        // Initial fetch
         fetchDataAndUpdateThermometer();
     </script>
 </body>
